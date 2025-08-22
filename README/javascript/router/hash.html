@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div>
+      <ul>
+        <li><a href="#/home">首页</a></li>
+        <li><a href="#/user">用户中心</a></li>
+        <li><a href="#/login">登陆</a></li>
+      </ul>
+      <div id="view"></div>
+    </div>
+  </body>
+</html>
+
+<script>
+  // 声明一个view
+  let view = null
+  // 当初始的 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像和子框架的完全加载。
+  window.addEventListener('DOMContentLoaded', onload)
+  // 监听hash的变化 hashchange用于监听hash值的变化
+  window.addEventListener('hashchange', setViewChange)
+  function onload() {
+    view = document.getElementById('view')
+    // 一开始进入页面匹配路由
+    setViewChange()
+  }
+  function setViewChange() {
+    if (!this.location.hash) {
+      //初始化路由
+      view.innerHTML = '首页'
+    }
+    switch (this.location.hash) {
+      case '#/home':
+        view.innerHTML = '首页'
+        break
+      case '#/user':
+        view.innerHTML = '用户中心'
+        break
+      case '#/login':
+        view.innerHTML = '登陆'
+        break
+    }
+  }
+</script>

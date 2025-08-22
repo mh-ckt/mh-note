@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>mvvm</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="mvvm.js"></script>
+</body>
+
+</html>
+
+<script>
+  var app = new Vue({
+    el: '#root',
+    template: `<button @click="onSwitch()">{{isOpen ? '关' : '开'}}</button>`,
+    data: {
+      isOpen: false
+    },
+    methods: {
+      onSwitch() {
+        this.isOpen = !this.isOpen;
+      }
+    }
+  });
+</script>

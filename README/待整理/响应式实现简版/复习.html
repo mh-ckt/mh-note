@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div style="margin: 40px">
+      <h2 id="firstName"></h2>
+      <h2 id="lastName"></h2>
+      <h2 id="fullName"></h2>
+    </div>
+  </body>
+</html>
+
+<script>
+  let person = {
+    name: '陈可可可',
+    age: 20
+  }
+
+  let methods = {
+    getFristName: function () {
+      let firstName = document.getElementById('firstName')
+      firstName.innerHTML = '姓：' + person.name.substring(0, 1)
+    },
+    getLastName: function () {
+      let firstName = document.getElementById('lastName')
+      firstName.innerHTML = '名：' + person.name.substring(1)
+    }
+  }
+
+  function Observe(data) {
+    for (let key in data) {
+      let initKey = data[key]
+      let funcs = []
+      Object.defineProperty(data, key, {
+        get() {
+          // 依赖收集
+          if (window.__func && !funcs.includes(window.__func)) {
+            funcs.push(window.__func)
+          }
+          return initKey
+        },
+        set(val) {
+          initKey = val
+          // 派发更新
+          for (var i = 0; i < funcs.length; i++) {
+            console.log(funcs)
+            funcs[i]()
+          }
+        }
+      })
+    }
+  }
+
+  Observe(person)
+
+  function Dep(fn) {
+    window.__func = fn
+    fn()
+    window.__func = null
+  }
+
+  for (let key in methods) {
+    Dep(methods[key])
+  }
+
+  person.name = '哈哈哈哈'
+  // person.name = '11111'
+</script>

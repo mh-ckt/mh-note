@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <a href="https://www.baidu.com" onclick="return false">跳转百度</a>
+      <div onselectstart="return false">
+        这段内容不可选，禁止文字被选中
+        <p>禁止页面中某一块或某一篇文章被选中复制</p>
+      </div>
+
+      <form action="www.baidu.com" method="get" onkeydown="if(event.keyCode==13){return false;}">
+        <input type="text" value="" />
+      </form>
+    </div>
+  </body>
+</html>
+
+<script>
+  /*
+  浏览器的默认行为有哪些？
+  */
+  // 1、点击一个链接浏览器会默认跳转到指定的url，解决方案是在a标签中的onclick事件中直接return false。
+  // <a href="https://www.baidu.com" onclick="return false">跳转百度</a>
+  // <a href="https://www.baidu.com" onclick="event.preventDefault()">跳转百度</a>
+
+  // 2、在文本上按下鼠标按钮并移动 —— 选中文本。
+  // 解决方案是设置onselectStart事件中设置return false
+
+  // 3、阻止回车键提交表单，当按下回车键的时候浏览器默认会将表单提交给服务器并刷新当前页面。
+  // 解决方案是：在form或者input上设置onkeydowm事件中判断当前keyCode是否等于13，如果等于return false
+  // <form
+  //   action="www.baidu.com"
+  //   method="get"
+  //   onkeydown="if(event.keyCode==13){return false;}"
+  // >
+  //   <input type="text" value="" />
+  // </form>
+</script>

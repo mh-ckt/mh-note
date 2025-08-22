@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>定位层的相互覆盖问题</title>
+</head>
+<style>
+.red,.blue,.green{ width: 200px; height: 200px; }
+.red { background-color: red; }
+.blue { background-color: blue; position: relative; top: -100px; z-index: 1;}
+.green { background-color: green; position: relative;top: -200px;  z-index: 2;}
+.left,.right{width:20px; height: 20px; background-color: yellow;}
+.left {  position: absolute; top: 0px;left: 0px; z-index: 99;}
+.right {  position: absolute; top: 0px;right: 0px; z-index: 9999;}
+
+/* 定位覆盖的优先级还是先取决于父辈元素的z-index的大小（拼爹），然后才是自己的z-index的大小。
+另外，
+相对定位relative元素的定位是相对其正常位置进行移位，不脱离文档流，它原本所占的空间不会改变；
+绝对定位absolute元素的位置相对于最近的已定位父元素，如果元素没有已定位的父元素，那么它的位置相对于body，absolute定位使元素的位置与文档流无关，因此不占据空间 */
+
+</style>
+<body>
+	<div class="red">这是一个没有定位的块</div>
+	<div class="blue">这个块是根据其正常位置向上移动<div class="left"></div></div>
+	<div class="green">这个块是根据其正常位置向上移动<div class="right"></div></div>
+</body>
+</html>
+

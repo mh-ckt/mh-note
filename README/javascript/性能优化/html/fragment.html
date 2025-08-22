@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+
+<script>
+  /**
+   * 减少DOM操作的方法有那些？
+   * 1、文档碎片
+   */
+  onMounted(() => {
+    // ----------- 第一种 ----------
+    const list1 = document.getElementById('list1')
+    for (let index = 1; index < 5; index++) {
+      const li = document.createElement('li')
+      li.innerHTML = `项目${index}`
+      list1.appendChild(li) // 操作了5次DOM
+    }
+
+    // ----------- 使用文档碎片 ----------
+    const list2 = document.getElementById('list2')
+    const fragment = document.createDocumentFragment()
+    for (let index = 1; index < 5; index++) {
+      const li = document.createElement('li')
+      li.innerHTML = `项目${index}`
+      fragment.appendChild(li)
+    }
+    list2.appendChild(fragment) // 操作了一次
+    // 解释：fragment是存储在内存中的,
+  })
+</script>

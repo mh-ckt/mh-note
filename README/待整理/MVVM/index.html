@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>origin</title>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
+</html>
+<script>
+  var isShow = true;
+
+  var modal = document.createElement('div');
+  var switchButton = document.createElement('button');
+  switchButton.innerText = '关';
+  switchButton.onclick = function () {
+    if (isShow) {
+      switchButton.innerText = '开';
+      isShow = false;
+    }
+    else {
+      switchButton.innerText = '关';
+      isShow = true;
+    }
+  }
+  modal.appendChild(switchButton);
+  document.getElementById('root').appendChild(modal);
+</script>

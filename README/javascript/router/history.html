@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li><a href="?x=home" onclick="changeUl('home');return false">首页</a></li>
+    <li><a href="?x=user" onclick="changeUl('user');return false">用户中心</a></li>
+    <li><a href="?x=login" onclick="changeUl('login');return false">登陆</a></li>
+  </ul>
+  <div id="view">
+</body>
+
+</html>
+
+<script>
+  // const state = { 'page_id': 1, 'user_id': 5 }
+  // const title = ''
+  // const url = 'hello-world.html'
+  // history.pushState(state, title, url)
+ 
+  const view = document.getElementById('view')
+  function changeUl(val) {
+    let state = val
+    //每一次执行pushState都会在浏览器的地址栏中增加新的网址
+    history.pushState(state, null, '?x=' + val);
+    setViewChange(val)
+  }
+
+  // 设置需要展示的页面
+  function setViewChange(val) {
+    if (!val) {  //初始化路由
+      val = 'home'
+    }
+    switch (val) {
+      case 'home':
+        view.innerHTML = '首页'
+        break
+      case 'user':
+        view.innerHTML = '用户中心'
+        break
+      case 'login':
+        view.innerHTML = '登陆'
+        break
+    }
+  }
+  window.addEventListener('DOMContentLoaded', onload)
+  function onload() {
+    // 一开始进入页面匹配路由
+    setViewChange()
+  }
+  // popstate是浏览器某些行为下触发的事件。
+  window.addEventListener('popstate', function (e) {
+    console.log(e);
+    setViewChange(e.state)
+  });
+
+  // 与popstate用法相同
+  // onpopstate = function (event) {
+  //   console.log(event);
+  // }
+</script>

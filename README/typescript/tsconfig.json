@@ -1,0 +1,33 @@
+{
+  /**
+    路径
+      **表示任意的文件夹
+      *表示任意的文件
+    include  用于指定那些ts文件需要编译
+    esclude  用来指定那些ts文件不需要编译
+    compilerOptions  编译器的选项
+    target    用来指定ts编译成ts的版本  
+    module  用来指定使用的模块化的规范 
+*/
+  "include": ["./src/*"],
+  //   "esclude":[
+  //       "./src/one/*"
+  //   ],
+  "compilerOptions": {
+    //编译器的选项
+    "module": "amd",
+    "outFile": "./dist/app.js", //编译后生成的文件路径
+    "noImplicitAny": true, // 如果编译器无法根据上下文的类型信息推断出参数、函数返回值或成员变量的类型，编译器将报错。
+    // 编译的选项
+    "target": "esnext", //esnext指的是最新的版本  默认值是es3
+    "allowJs": false, //是否编译js文件
+    "checkJs": false, //是否检查js语法
+    "removeComments": false, //是否移除注释
+    // 语法检查的选项
+    "strict": true, // 所有的严格检查总开关
+    "alwaysStrict": true, //是否使用严格模式
+    "moduleResolution": "node",
+    // "allowImportingTsExtensions":true,
+    "noImplicitThis": false //不允许不明确的this
+  }
+}

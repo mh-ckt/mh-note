@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body></body>
+</html>
+
+<script>
+  //创建响应式对象
+  class RefObj {
+    constructor(val) {
+      this._value = val
+    }
+    get value() {
+      // 在第一次执行之后触发get来收集依赖
+      track(this, 'value')
+      return this._value
+    }
+    set value(newVal) {
+      console.log(newVal)
+      this._value = newVal
+      // trigger(this, 'value');
+    }
+  }
+
+  // 判断是不是对象
+  function isObject(val) {
+    return val !== null && typeof val === 'object'
+  }
+
+  // ref的函数
+  function ref(val) {
+    // 此处源码中为了保持一致，在对象情况下也做了用value 访问的情况value->proxy对象
+    // 我们在对象情况下就不在使用value 访问
+    return isObject(val) ? reactive(val) : new RefObj(val)
+  }
+
+  let a = ref('222')
+
+  a.value = 3333
+
+  // console.log(a);
+</script>

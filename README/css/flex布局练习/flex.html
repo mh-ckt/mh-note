@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-12">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box" >
+        <div class="main top">1</div>
+        <div class="main left">2</div>
+        <div class="main right">3</div>
+        <div class="main bottom">4</div>
+    </div>
+</body>
+</html>
+<style >
+    .box{
+        display:flex;
+        width: 500px;
+        height: 200px;
+        border:1px solid red;
+        /* flex-direction 决定项目在主轴上的排列方向 */
+        /* flex-direction: row-reverse; */
+
+        /* flex-wrap  决定项目在一条轴线上排列不下如何换行 */
+        /* flex-wrap:wrap; */
+
+        /* justify-content: ;  决定项目在主轴上排列方式  */
+        /* justify-content: center; */
+
+        /* align-items 决定项目在交叉轴上的排列方式 */
+        /* align-items: center; */
+
+        /* align-content: ; 决定项目在多更轴线上的对齐方式  如果只有一条不起作用*/
+
+
+    }
+    .main{
+        width: 50px;
+        height:50px;
+        background: blue;
+        /* margin-left:50px; */
+    }
+    .top{
+        background: chocolate;
+        /* order: ;  设置项目的排列顺序  数值越小就越考前   默认为0 */
+        order: 11;
+
+        /* flex-grow   定义项目的放大程度 */
+        /* flex-grow: 3; */
+
+        /* flex-shrink  定义了项目的缩小比例 */
+        /* flex-shrink: 0; */
+
+        align-self: flex-end;
+    }
+    .left{
+        background: red;
+        /* flex-grow: 2; */
+    }
+</style>

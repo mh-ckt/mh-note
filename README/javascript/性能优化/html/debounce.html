@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+
+<script>
+  const request = () => {
+    console.log('正在发送请求')
+  }
+  const send1 = () => {
+    debounce(request, 500)
+  }
+
+  // 防抖函数
+  const debounce = (fn, timer) => {
+    if (window.Tdebounce) {
+      clearTimeout(window.Tdebounce)
+    }
+    window.Tdebounce = setTimeout(fn, timer)
+  }
+
+  const send2 = () => {
+    throttle(request, 1000)
+  }
+
+  // 节流函数
+  const throttle = (fn, timer) => {
+    if (!window.Tthrottle) {
+      window.Tthrottle = true
+      fn()
+      setTimeout(() => {
+        window.Tthrottle = false
+      }, timer)
+    }
+  }
+</script>

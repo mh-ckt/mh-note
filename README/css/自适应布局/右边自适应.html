@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 请用 div+css 写出左侧固定(width:200px;),右侧自适应页面宽度. -->
+    <div class="parent">
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    
+</body>
+<style>
+
+    /* 方法一 */
+     /* .left {
+        width: 200px;
+        height: 1000px;
+        float: left;
+        background: yellow;
+    }
+    .right {
+        overflow: hidden;
+        background: red;
+    } */
+
+    /* 方法二 */
+    .parent{
+        display: flex;
+    }
+
+    .left {
+        flex: none;
+        width: 100px;
+        background: yellow;
+    }
+
+    .right {
+        flex: 1;
+        background: red;
+    }
+
+
+   
+</style>
+
+</html>

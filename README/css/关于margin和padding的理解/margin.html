@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="brother1">
+    我是兄弟元素一
+    </div>
+    <i id="brother2">
+    我是兄弟元素二
+    </i>
+    <div id="brother3">
+        我是兄弟元素三
+    </div>
+</body>
+    <style>
+        #brother1{
+            background: chartreuse;
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+        }
+        #brother2{
+            margin: 100px;
+            width: 200px;
+            height: 200px;
+            /* margin-top: 100px; */
+            background:pink;
+        }
+        #brother3{
+            margin: 100px;
+            width: 200px;
+            height: 200px;
+            /* margin-top: 100px; */
+            background:yellow;
+        }
+            /* 总结：
+            块级元素的特点：
+            元素总是独占一行的
+            两个块级元素的上下margin值会重叠 
+            常见的块状元素：h1-h6  div  p    hr  from  table  ul  li  
+
+            内联元素特点：
+            和相邻的元素排在一行
+            宽高  margin-top margin-bottom padding-top和padding-bottom不会生效  主要靠内容撑开
+            常见的内联元素：span i  a  b  img  input  small  strong  sub  sup
+              */
+    </style>
+</html>

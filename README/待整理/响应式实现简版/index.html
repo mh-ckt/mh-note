@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div style="margin: 40px">
+      <h2 id="firstName"></h2>
+      <h2 id="lastName"></h2>
+    </div>
+  </body>
+</html>
+
+<script>
+  let person = {
+    name: '擎天柱',
+    age: 20
+  }
+
+  let method = {
+    changeFirstName: function () {
+      let firstName = document.getElementById('firstName')
+      firstName.textContent = '姓:' + person.name.substring(0, 1)
+    },
+    changeLastName: function () {
+      let lastName = document.getElementById('lastName')
+      lastName.textContent = '名:' + person.name.substring(1)
+    }
+  }
+
+  method.changeFirstName()
+  method.changeLastName()
+
+  // 简版的 observe
+  function observe(data) {
+    for (let key in data) {
+      let initKey = data[key]
+      // let funcs = []  // 将每一次依赖属性的函数收集在 func 中
+      Object.defineProperty(data, key, {
+        get: function () {
+          console.log(initKey) //
+          // // 依赖收集
+          // if (window.__func && !funcs.includes(window.__func)) {  //做去重处理，可能会出现当前函数中有多个 name 属性
+          //   funcs.push(window.__func)
+          // }
+          return initKey
+        },
+
+        set: function (val) {
+          console.log(val) //周树人
+          initKey = val
+          // 派发更新
+          // for (var i = 0; i < funcs.length; i++) {
+          //   funcs[i]();
+          // }
+        }
+      })
+    }
+  }
+  observe(person)
+
+  person.name = '周树人'
+
+  // method.changeFirstName()
+  // method.changeLastName()
+
+  // function Dep(fn) {
+  //   window.__func = fn;  // 将依赖 name 属性的函数赋值给 window 下的一个属性
+  //   fn(); //这里是为了第一次渲染（让页面中）
+  //   // window.__func = null;   // 将当前的属性清空
+  // }
+
+  // for (let i in method) {
+  //   Dep(method[i])
+  // }
+
+  // person.name = '哈哈哈哈'  //变更依赖
+  // person.age = 100
+</script>

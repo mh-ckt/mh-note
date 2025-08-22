@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      /*
+        为什么组件中的data是一个函数而不是一个对象？
+        每一个组件对象最后都会被Vue.extend()构建成组件实例。
+
+       
+        
+        
+        */
+      // 模仿组件函数定义data属性
+      //-------------对象的形式----------------
+      // function Component() {
+
+      // }
+      // Component.prototype.data = {
+      //     count: 0
+      // }
+      // const componentA = new Component()
+      // const componentB = new Component()
+      // componentA.data.count = 1
+      // console.log(componentB.data.count);  //1
+      //原因是对象是引用类型，上面的两个实例对象共享同一个内存地址，修改其中一个，其他依赖也会改变
+
+      // -------------函数的形式----------------
+      // 函数返回的对象内存地址并不相同
+      function Component() {
+        this.data = this.data()
+      }
+      Component.prototype.data = function () {
+        return {
+          count: 3
+        }
+      }
+      const componentA = new Component()
+      const componentB = new Component()
+      componentA.data.count = 4
+      // console.log(componentA);
+      console.log(componentB.data.count) //3
+    </script>
+  </body>
+</html>
