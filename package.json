@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "vitepress dev mh",
+    "build": "vitepress build mh",
+    "preview": "vitepress preview mh"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "vitepress": "^1.6.3"
+  }
+}
