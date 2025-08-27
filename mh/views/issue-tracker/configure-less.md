@@ -41,13 +41,13 @@ module.exports = {
           lessOptions: {
             modifyVars: { '@primary-color': '#1DA57A' }, // 示例：全局变量
             javascriptEnabled: true, // 允许在LESS文件中使用JavaScript表达式
-            module: true
-          }
-        }
-      }
+            module: true,
+          },
+        },
+      },
     },
-    { plugin: CracoCSSModules }
-  ]
+    { plugin: CracoCSSModules },
+  ],
 }
 ```
 
@@ -80,7 +80,7 @@ export default App
 ```
 
 如果你的项目启动成功，并控制台打印的 styles 是一个对象的形式，说明 less 模块化配置成功了。
-![alt text](image-less.png)
+![alt text](../../images/configure-less-01.png)
 
 如果你不想使用模块化的的方式引入也是可以的。
 
