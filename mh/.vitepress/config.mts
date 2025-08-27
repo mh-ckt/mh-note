@@ -1,12 +1,14 @@
 import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: '1',
-  description: '1',
+  title: 'mh',
+  description: 'mh note',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' },
+      { text: 'css', link: '/views/css/basics' },
+      { text: 'javascript', link: '/views/javascript/basics' },
+      { text: 'react', link: '/views/react/basics' },
     ],
 
     sidebar: [
@@ -63,13 +65,6 @@ export default defineConfig({
           { text: '代码提交校验及提交规范', link: '/views/others/code-submission' },
           { text: 'react中全局配置less', link: '/views/others/configure-less' },
           { text: 'git相关', link: '/views/others/git' },
-        ],
-      },
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
         ],
       },
       {

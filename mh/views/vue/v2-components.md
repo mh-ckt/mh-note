@@ -1,14 +1,3 @@
-# 目录
-
-- [vue 的生命周期有那些？分别做了什么事情？](##1)
-- [vue 的 created 和 mounted 中请求数据有什么区别？](##1)
-- [父子组件的生命周期执行的顺序？](##1)
-- [vue 中组件通信有那些？](##1)
-- [keep-alive 的作用？](##1)
-- [请说下什么是动态组件？](##1)
-
-- [组件上如何实现双向数据绑定？](##1)
-
 ## vue 的生命周期有那些？分别做了什么事情？
 
 beforeCreate 函数：
@@ -56,7 +45,7 @@ created 和 mounted 在请求数据方面的区别在于它们被调用的时机
         EventBus
         $parent
 $root
-        $children
+$children
 Provide 与 Inject
 Vuex
 详细介绍：https://juejin.cn/post/7248888621364625467
@@ -81,11 +70,11 @@ keep-alive : 包裹动态组件(组件)时，会缓存不活动的组件实例�
 <Son v-model="value" />
 
 第二步：在子组件中可以使用 model 的语法糖，实现实时监听父组件 v-model 绑定的值，同时借助 this.$emit自定义事件将修改的值传递给父组件。
-              model: { 
-                prop: 'value',  //接收的值
-                event: 'event'  //定义事件名
-              },
-         
+model: {
+prop: 'value', //接收的值
+event: 'event' //定义事件名
+},
+
              this.$emit('event', this.msg) //触发自定义事件
 
 扩展
