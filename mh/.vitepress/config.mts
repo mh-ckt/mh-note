@@ -58,10 +58,11 @@ export default defineConfig({
         ],
       },
       {
-        text: '工程化实践',
+        text: '其他',
         items: [
-          { text: '代码提交校验及提交规范', link: '/views/issue-tracker/code-submission' },
-          { text: 'react中全局配置less', link: '/views/issue-tracker/configure-less' },
+          { text: '代码提交校验及提交规范', link: '/views/others/code-submission' },
+          { text: 'react中全局配置less', link: '/views/others/configure-less' },
+          { text: 'git相关', link: '/views/others/git' },
         ],
       },
       {
@@ -74,6 +75,9 @@ export default defineConfig({
       {
         text: 'react文档',
         items: [
+          { text: '基础', link: '/views/react/basics' },
+          { text: '进阶', link: '/views/react/advance' },
+          { text: 'useState', link: '/views/react/use-state' },
           { text: 'useState', link: '/views/react/use-state' },
           { text: 'useRef', link: '/views/react/use-ref' },
           { text: 'useCallback', link: '/views/react/use-callback' },
