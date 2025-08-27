@@ -1,8 +1,8 @@
 import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "1",
-  description: "1",
+  title: '1',
+  description: '1',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
@@ -15,22 +15,24 @@ export default defineConfig({
         items: [
           { text: 'WASM的介绍', link: '/views/nuxt/wasm' },
           { text: '错误处理', link: '/views/nuxt/error-handling' },
-          { text: 'JSX/TSX语法', link: '/views/nuxt/tsx-jsx' }
-        ]
+          { text: 'JSX/TSX语法', link: '/views/nuxt/tsx-jsx' },
+          { text: 'Module Extend Pages', link: '/views/nuxt/modules' },
+          { text: '内置组合式函数', link: '/views/nuxt/composables' },
+        ],
       },
       {
         text: '工程化实践',
         items: [
           { text: '代码提交校验及提交规范', link: '/views/issue-tracker/code-submission' },
           { text: 'react中全局配置less', link: '/views/issue-tracker/configure-less' },
-        ]
+        ],
       },
       {
         text: 'Examples',
         items: [
           { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
+          { text: 'Runtime API Examples', link: '/api-examples' },
+        ],
       },
       {
         text: 'react文档',
@@ -43,12 +45,10 @@ export default defineConfig({
           { text: 'useLayoutEffect', link: '/views/react/use-layout-effect' },
           { text: 'useMemo', link: '/views/react/use-memo' },
           { text: 'useReducer', link: '/views/react/use-reducer' },
-        ]
-      }
+        ],
+      },
     ],
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
-  }
+    socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }],
+  },
 })
