@@ -13,9 +13,9 @@ export default defineConfig({
       {
         text: 'nuxt文档',
         items: [
-          { text: 'WASM的介绍', link: '/views/nuxt-docs/wasm' },
-          { text: '错误处理', link: '/views/nuxt-docs/error-handling' },
-          { text: 'JSX/TSX语法', link: '/views/nuxt-docs/tsx-jsx' }
+          { text: 'WASM的介绍', link: '/views/nuxt/wasm' },
+          { text: '错误处理', link: '/views/nuxt/error-handling' },
+          { text: 'JSX/TSX语法', link: '/views/nuxt/tsx-jsx' }
         ]
       },
       {
