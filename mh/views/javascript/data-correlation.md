@@ -1,3 +1,68 @@
+## null 和 undefined 的区别?
+
+1、null 表示的是没有对象，即该处不应该有值。undefined 表示没有被定义的，表示缺少的值。
+2、null 使用 typeof 转换的数据类型是的 Object，undefined 使用 typeOf 转换的数据类型是 undefiend。
+3、使用两个等号比较 null 和 undefined 的时候是相等的，如果使用严格相等去比较是不相等的。
+
+## 什么情况下会返回 undefined？
+
+第一种：使用 let 或者 var 声明了一个变量但是没有赋值，会返回 undefined。
+第二种：调用函数时应提供参数，但是没有提供。
+第三种：对象中的属性没有赋值的时候。
+第四种：函数没有返回值，或者返回值是空的。
+
+## js 的数据类型有哪些？如何判断 js 的数据类型？
+
+JS 中有七种简单数据类型：undefined、null、boolean、string、number、symbol、bigInt。
+引用类型：object
+ES6 中新增了一种 Symbol 。这种类型的对象永不相等，即始创建的时候传入相同的值，可以解决属性名冲突的问题，做为标记。
+谷歌 67 版本中还出现了一种 bigInt。是指安全存储、操作大整数。（但是很多人不把这个做为一个类型）。
+存储区别：基本数据类型存储在栈中，复杂数据类型存放在堆中，栈中只保存引用地址。
+
+判断 js 的数据类型；
+1、判断基础数据类型的方法主要使用 typeof，但是值得注意的是 typeof 无法判断 null，null 会直接返回 object，还有就是如果当前的复杂数据类型是 object 或者 array，function 等都会返回 object。
+2、判断复杂数据类型一般使用的是 instanceof，instanceof 的原理是通过查找该对象的原型链上的原型进行判断。
+3、通用型的数据类型判断方式:object.proptype.toSting.call()。
+
+## 简单介绍下 symbol？
+
+Symbol 是 es6 中新增的一种基础数据类型，特点是通过 Symbol 函数生成唯一的 Symbol 值。
+Symbol 中可以接收一个参数，这个参数是对于 Symbol 的一种描述，两个相同的 Symbol 也是不相等的。
+Symbol 可以作为属性名使用，同时用 for..in 不会遍历 Symbol 属性名。
+
+```js
+// 两个相同的 Symbol 并不相等
+let name1 = Symbol('小明')
+let name2 = Symbol('小明')
+
+// Symbol 可以作为属性名
+let age = Symbol('age')
+let person = {
+  [age]: 12,
+}
+```
+
+## 例举 3 种强制类型转换和 2 种隐式类型转换?
+
+强制：parseInt()、parseFloat()、Number()
+隐式：== 、console.log()、alert()
+
+## == 和 === 的区别？
+
+两个等号会进行类型转换，然后再进行比较。例如：
+
+```js
+console.log(0 == false) // 输出 true
+console.log('' == 0) // 输出 true
+```
+
+三个等号是严格相等运算符，不会进行类型转换，直接比较类型和值，只要有一个不相等就返回 false。例如：
+
+```js
+console.log(0 === false) // 输出 false
+console.log('' === 0) // 输出 false
+```
+
 ### set 的基础介绍？
 
 1. set 是 es6 提出的一种新的数据结构，返回不重复的 set 数据结构。
@@ -117,7 +182,7 @@ console.log(map.clear()) // undefined
 ```js
 let person = {
   name: 'jack',
-  age: 14
+  age: 14,
 }
 // 将对象转换成 map 数据
 console.log(Object.entries(person)) // [ [ 'name', 'jack' ], [ 'age', 14 ] ]
@@ -144,7 +209,7 @@ console.log(arr) // [ [ 1, true ], [ 0, false ] ]
 // 将数组转换成 map
 let newMap = new Map([
   [true, 7],
-  [false, 0]
+  [false, 0],
 ])
 console.log(newMap) // Map(2) { true => 7, false => 0 }
 ```
@@ -158,7 +223,7 @@ function codetoString(code) {
   let errors = new Map([
     [200, '请求成功'],
     [404, '页面不存在'],
-    [500, '服务端错误']
+    [500, '服务端错误'],
   ])
   if (Array.isArray(code)) {
     return code.map(item => errors.get(item))
@@ -167,4 +232,43 @@ function codetoString(code) {
   }
 }
 console.log(codetoString(code))
+```
+
+### proxy 的基础使用？
+
+一、proxy 代理，指的在目标对象上设置一层拦截，外界对于该对象的访问必须经过这层拦截。
+二、语法：var proxy = new Proxy(target, handler); target 目标对象 handler 定制拦截行为
+三、proxy 的实例方法：
+1、get()方法：用于拦截属性的读取，接收三个参数，目标对象，属性名，proxy 实例.
+2、set()方法：用于拦截某个属性的赋值操作，可以接收 4 个参数，分别是，目标对象，属性名，属性值，proxy 实例
+
+### 读取一个对象上属性，读取不到返回 ‘该属性不存在’
+
+```js
+let data = {
+  person: '人类',
+}
+let proxy = new Proxy(data, {
+  get: (obj, key, proxy) => {
+    return obj[key] ? obj[key] : '该属性不存在'
+  },
+})
+console.log(proxy.person) // 人类
+console.log(proxy.age) // 该属性不存在
+```
+
+### 读取数组中的参数，可以传入负数，负数代码重后向前读取
+
+```js
+let arr = ['a', 'b', 'c']
+let proxy = new Proxy(arr, {
+  get: (obj, key) => {
+    if (Number(key) < 0) {
+      return obj.reverse()[key.split('-')[1]]
+    } else {
+      return obj[key]
+    }
+  },
+})
+console.log(proxy[-3])
 ```

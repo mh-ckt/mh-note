@@ -1,9 +1,3 @@
-# 目录
-
-- [cookie 的介绍？](##1)
-- [localStorage 的介绍？](##1)
-- [localStorage 与 sessionStorage 的区别?](##1)
-
 ## cookie 的介绍？
 
 介绍：cookie 一般是服务端创建，保存在客户端的，cookie 的存储形式一般以键值对的形式，例如 name=jack。一般用来保存用户的信息的，在 http 下 cookie 是明文传输的,较不安全。设置的属性如下：
@@ -24,13 +18,13 @@ let arr = [
   {
     key: 'username',
     value: 'John Doe',
-    day: 7
+    day: 7,
   },
   {
     key: 'age',
     value: 18,
-    day: 7
-  }
+    day: 7,
+  },
 ]
 function getDay(day) {
   var d = new Date()

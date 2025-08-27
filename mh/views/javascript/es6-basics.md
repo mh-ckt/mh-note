@@ -1,14 +1,3 @@
-- [es5 和 es6 继承有什么区别？](##1)
-- [ES6 中有那些新特性？](##2)
-- [](##3)
-- [词法作用域和动态作用域?](##4)
-- [ECMAScript 和 javaScript 的关系？ es6 和 es2015 的关系？](##5)
-- [常见的解构赋值？](##6)
-- [函数默认值？](##7)
-- [箭头函数和普通函数的区别?](##8)
-- [什么是剩余参数？](##9)
-- [什么是函数柯里化？](##10)
-
 ## es5 和 es6 继承有什么区别？{##1}
 
 ES5 和 ES6 在继承方面的主要区别在于 ES5 是通过原型链或构造函数机制来实现继承，而 ES6 则是通过 class 和 extends 关键字来实现继承。（具体后续探讨）
@@ -95,7 +84,7 @@ for (var i = 0; i < 10; i++) {
       console.log(i)
     },
     1000,
-    i
+    i,
   )
 }
 
@@ -207,7 +196,7 @@ let obj = {
     return function () {
       console.log(this)
     }
-  }
+  },
 }
 obj.a()()
 obj.b()()
@@ -221,8 +210,8 @@ let obj = {
     getname: function () {
       return this?.name
     },
-    setname: () => this?.name
-  }
+    setname: () => this?.name,
+  },
 }
 console.log(obj.pop.getname())
 console.log(obj.pop.setname())

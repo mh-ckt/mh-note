@@ -1,14 +1,3 @@
-# 目录
-
-- [常见的创建对象、遍历对象、合并对象的方法有哪些？](##1)
-- [如何检测对象中是否存在某个属性？](##2)
-- [如何判断一个对象是不是为空？](##3)
-- [深拷贝和浅拷贝的区别？常见的有那些？如何递归实现深拷贝？](##4)
-- [如何判断两个嵌套对象相等？](##5)
-- [如何实现阶乘?] (##6)
-- [Object.defineProperty 如何监听对象？如果是嵌套对象如何监听？](##7)
-- [什么是迭代对象？有什么用处？] (##8)
-
 ## 常见的创建对象、遍历对象、合并对象的方法有哪些？{##1}
 
 创建对象：
@@ -31,14 +20,14 @@
 
 ```js
 let dog = {
-  name: 'Tom'
+  name: 'Tom',
 }
 // 向对象的原型上添加属性
 Object.prototype.hobby = '睡觉'
 // 添加不可枚举属性
 Object.defineProperty(dog, 'age', {
   value: 2,
-  enumerable: false
+  enumerable: false,
 })
 console.log(Object.values(dog)) // [ 'Tom' ]
 console.log(Object.keys(dog)) // [ 'name' ]
@@ -60,14 +49,14 @@ console.log(Object.getOwnPropertyNames(dog)) // [ 'name', 'age' ]
 ```js
 // 判断对象中是否存在某个属性？
 let dog = {
-  name: 'Tom'
+  name: 'Tom',
 }
 // 向对象的原型上添加属性
 dog.__proto__.hobby = '睡觉'
 // 添加不可枚举属性
 Object.defineProperty(dog, 'age', {
   value: 2,
-  enumerable: false
+  enumerable: false,
 })
 ```
 
@@ -134,8 +123,8 @@ let obj = {
   age: 20,
   hobby: {
     a: '睡觉',
-    b: ['篮球', '象棋']
-  }
+    b: ['篮球', '象棋'],
+  },
 }
 function deepClone(any) {
   let type = Object.prototype.toString.call(any)
@@ -250,7 +239,7 @@ console.log(fn(4))
 ```js
 let person = {}
 Object.defineProperty(person, 'name', {
-  value: '川普宝宝'
+  value: '川普宝宝',
 })
 person.name = '汤姆' // 不可修改
 delete person.name // 不可删除
@@ -273,7 +262,7 @@ Object.defineProperty(person, 'name', {
   set: function (val) {
     console.log(`设置了属性name的值是${val}`)
     value = val
-  }
+  },
 })
 // 第一步：console.log(person.name)
 // 第二步：person.name = '汤姆'
@@ -288,7 +277,7 @@ Object.defineProperty(person, 'name', {
 let person = {
   name: '川普宝宝',
   hobby: '打球',
-  gender: 'man'
+  gender: 'man',
 }
 
 for (let key in person) {
@@ -303,7 +292,7 @@ function dynamicMonitor(obj, key, value) {
     set(val) {
       console.log(`设置了${key}的值是${val}`)
       value = val
-    }
+    },
   })
 }
 person.name = '普京' // 设置对象的值
@@ -319,9 +308,9 @@ let person = {
   hobby: {
     readBooks: ['我的大学', '围城'],
     sports: {
-      playball: ['棒球', '高尔夫']
-    }
-  }
+      playball: ['棒球', '高尔夫'],
+    },
+  },
 }
 observer(person)
 function observer(data) {
@@ -341,7 +330,7 @@ function defineReactive(obj, key, value) {
     set: function (v) {
       console.log(`设置了属性${key}的值${v}`)
       value = v
-    }
+    },
   })
 }
 person.hobby.sports.playball[1] = '橄榄球'
@@ -375,8 +364,10 @@ function makeIterator(arr) {
   let index = 0
   return {
     next: function () {
-      return arr.length > index ? { value: arr[index++], done: false } : { value: undefined, done: true }
-    }
+      return arr.length > index
+        ? { value: arr[index++], done: false }
+        : { value: undefined, done: true }
+    },
   }
 }
 ```
@@ -390,7 +381,7 @@ const arrayLike = {
   0: 'a',
   1: 'b',
   2: 'c',
-  length: 3
+  length: 3,
 }
 for (let value of arrayLike) {
   console.log(value) // Uncaught TypeError: arrayLike is not iterable
@@ -401,15 +392,17 @@ const arrayLike = {
   0: 'a',
   1: 'b',
   2: 'c',
-  length: 3
+  length: 3,
 }
 
 arrayLike.proto[Symbol.iterator] = function () {
   let index = 0
   return {
     next: () => {
-      return this.length > index ? { value: this[index++], done: false } : { value: undefined, done: true }
-    }
+      return this.length > index
+        ? { value: this[index++], done: false }
+        : { value: undefined, done: true }
+    },
   }
 }
 for (let value of arrayLike) {
@@ -423,7 +416,7 @@ for (let value of arrayLike) {
 // 普通对象本身是不存在迭代器的
 let man = {
   name: '小明',
-  age: 20
+  age: 20,
 }
 for (let v of man) {
   console.log(v) // Uncaught TypeError: man is not iterable
@@ -433,7 +426,7 @@ for (let v of man) {
 // 分析：普通对象并不像类数组那样对象的 key 是一堆有序的数字，并且也没有长度，所以在为普通对象添加迭代器的时候先解决这两个问题，不妨我们试试先遍历对象。
 let man = {
   name: '小明',
-  age: 20
+  age: 20,
 }
 
 man.proto[Symbol.iterator] = function () {
@@ -447,8 +440,10 @@ man.proto[Symbol.iterator] = function () {
   }
   return {
     next: () => {
-      return keys.length > index ? { value: this[keys[index++]], done: false } : { value: undefined, done: true }
-    }
+      return keys.length > index
+        ? { value: this[keys[index++]], done: false }
+        : { value: undefined, done: true }
+    },
   }
 }
 

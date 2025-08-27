@@ -1,18 +1,3 @@
-# 目录
-
-- [谈谈你对 promise 的理解？](##1)
-- [any 方法 && race 方法的区别？](##2)
-- [promsie 如何解决回调地狱？](##3)
-- [promsie.all 和 promise.allSettled 的区别？](##4)
-- [关于 promise.all 中传入多个 promsie 的执行顺序？](##5)
-- [promsie.all 的实现？](##6)
-- [使用 promise 封装 ajax？](##7)
-- [async 和 await 的介绍？](##8)
-- [promise 和 async、await 的区别？](##9)
-- [promise 的工作原理？及如何实现一个 promise 对象？](##10)
-- [使用函数实现 promise 的封装和 promise.then()的封装？](##11)
-- [使用 class 实现 promise 的封装和 promise.then()的封装？](##12)
-
 ## 谈谈你对 promise 的理解？{##1}
 
 1. promise 是异步编程的解决方案，promise 的出现解决了回调地狱的问题，promise 本身是一个构造函数，promise 的状态有三种，分别是进行中，已成功和已失败，状态之间的改变只能是从进行中到已成功或者已失败，状态的改变就不能再变。
@@ -50,7 +35,7 @@ p.then(
   },
   err => {
     console.log('err', err)
-  }
+  },
 )
 ```
 
@@ -83,7 +68,7 @@ Promise.race([p1, p2, p3]).then(
   },
   err => {
     console.log('race-err', err)
-  }
+  },
 )
 
 Promise.any([p1, p2, p3]).then(
@@ -92,7 +77,7 @@ Promise.any([p1, p2, p3]).then(
   },
   err => {
     console.log('any-err', err)
-  }
+  },
 )
 ```
 
@@ -245,7 +230,7 @@ caseXml('https://www.fastmock.site/mock/c49f0f85fc61eb33e3f5709421b48465/hello/h
   },
   err => {
     // console.log(err);
-  }
+  },
 )
 ```
 
@@ -297,10 +282,10 @@ caseXml('https://www.fastmock.site/mock/c49f0f85fc61eb33e3f5709421b48465/hello/h
     let [obj1, obj2, obj3] = await Promise.allSettled([
       Promise.resolve('hello'),
       Promise.reject('err'),
-      Promise.resolve('world')
+      Promise.resolve('world'),
     ])
     console.log(obj1, obj2, obj3)
-  }
+  },
 )()
 
 // ----------------- case1： 对代码的代码进行改造，要求第一秒打印’hello‘，第二秒打印’world‘ -----------------
@@ -335,7 +320,7 @@ f1()
     console.log(F1)
     let F2 = await f2()
     console.log(F2)
-  }
+  },
 )()
 ```
 
@@ -396,7 +381,7 @@ MyPromise.prototype.then = function (resolveFn, rejectFn) {
   if (this.PromiseState === 'pending') {
     this.callback = {
       resolveFn,
-      rejectFn
+      rejectFn,
     }
   }
 }
@@ -434,7 +419,7 @@ function MyPromise(callBack) {
       if (_this.store) {
         _this.store.resolveFn(val)
       }
-    }
+    },
   )
 }
 
@@ -448,7 +433,7 @@ MyPromise.prototype.then = function (resolveFn, rejectFn) {
   if (this.PromiseState === 'pending') {
     this.store = {
       resolveFn,
-      rejectFn
+      rejectFn,
     }
   }
 }
@@ -509,7 +494,7 @@ MyPromise.prototype.then = function (resolveFn, rejectFn) {
   if (this.PromiseState === 'pending') {
     this.stores.push({
       resolveFn,
-      rejectFn
+      rejectFn,
     })
   }
   return this
@@ -613,7 +598,7 @@ class Mypromise {
         onSucceed,
         onFail,
         resolve,
-        reject
+        reject,
       })
       // 如果是同步的直接执行
       this.#thenRun()
@@ -641,13 +626,13 @@ p.then(
   },
   err => {
     console.log(err)
-  }
+  },
 ).then(
   res => {
     console.log(res)
   },
   err => {
     console.log(err)
-  }
+  },
 )
 ```

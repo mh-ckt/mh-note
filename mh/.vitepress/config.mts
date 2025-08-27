@@ -11,6 +11,39 @@ export default defineConfig({
 
     sidebar: [
       {
+        text: 'css文档',
+        items: [
+          { text: 'css属性计算', link: '/views/css/attribute-calculation' },
+          { text: '包含块', link: '/views/css/containing-block' },
+        ],
+      },
+      {
+        text: 'javascript文档',
+        items: [
+          { text: 'js入门', link: '/views/javascript/basics' },
+          { text: 'js进阶', link: '/views/javascript/advance' },
+          { text: 'this', link: '/views/javascript/this' },
+          { text: '方法实现', link: '/views/javascript/method-realize' },
+          { text: 'object', link: '/views/javascript/object' },
+          { text: '数据处理', link: '/views/javascript/data-correlation' },
+          { text: 'promise', link: '/views/javascript/es6-promise' },
+          { text: 'ES6入门', link: '/views/javascript/es6-basics' },
+          { text: 'ES6进阶', link: '/views/javascript/es6-advance' },
+          { text: '类', link: '/views/javascript/es6-class' },
+          { text: '性能优化', link: '/views/javascript/performance-optimization' },
+          { text: '本地存储', link: '/views/javascript/bowser-local-storage' },
+          { text: '浏览器渲染原理', link: '/views/javascript/bowser-rendering' },
+          { text: '数据交互', link: '/views/javascript/browser-data-interaction' },
+          { text: '浏览器其他', link: '/views/javascript/bowser-others' },
+          { text: '并发请求', link: '/views/javascript/browser-erupt-request' },
+          { text: '请求相关', link: '/views/javascript/browser-request' },
+          { text: '文档对象模型', link: '/views/javascript/dom' },
+          { text: '事件循环', link: '/views/javascript/event-loop' },
+          { text: 'route相关', link: '/views/javascript/router' },
+          { text: '笔试', link: '/views/javascript/written-examination' }
+        ],
+      },
+      {
         text: 'nuxt文档',
         items: [
           { text: 'WASM的介绍', link: '/views/nuxt/wasm' },

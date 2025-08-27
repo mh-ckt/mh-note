@@ -1,8 +1,3 @@
-# 目录
-
-- [如何手动实现 instanceof 方法？](##1)
-- [如何手动实现 Object.create 方法？](##2)
-
 ## 如何手动实现 instanceof 方法？ {##1}
 
 介绍 instanceof 方法： instanceof 方法用于检测当前对象是否存在另一个构造函数的原型链的原型上，存在返回 ture，不存在返回 false。
@@ -61,7 +56,7 @@ const MyInstanceof = () => {
 
 ```js
 let obj = {
-  a: 1
+  a: 1,
 }
 function Create(obj) {
   let F = {}
@@ -76,7 +71,7 @@ console.log(O)
 
 ```js
 let obj = {
-  a: 1
+  a: 1,
 }
 function Create(obj) {
   function F() {}

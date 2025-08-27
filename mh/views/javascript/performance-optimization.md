@@ -1,3 +1,26 @@
+## 减少DOM操作，使用文档碎片
+
+```js
+// ----------- 第一种 ----------
+const list1 = document.getElementById('list1')
+for (let index = 1; index < 5; index++) {
+  const li = document.createElement('li')
+  li.innerHTML = `项目${index}`
+  list1.appendChild(li) // 操作了5次DOM
+}
+
+// ----------- 使用文档碎片 ----------
+const list2 = document.getElementById('list2')
+const fragment = document.createDocumentFragment()
+for (let index = 1; index < 5; index++) {
+  const li = document.createElement('li')
+  li.innerHTML = `项目${index}`
+  fragment.appendChild(li)
+}
+list2.appendChild(fragment) // 操作了一次
+// 解释：fragment是存储在内存中的,
+```
+
 ## 谈谈节流和防抖的实现及场景？
 
 防抖：设置一段时间，当用户连续触发事件的时候，此时只会执行一次。

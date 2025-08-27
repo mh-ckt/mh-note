@@ -1,15 +1,3 @@
-# 目录
-
-- [修改下面的定时器，输入 1-5?](##1)
-- [美图：取出一段 url 的参数重新组合成对象中的 key 和 value 的形式？](##1)
-- [美图：如何找出字符串中出现最多的字符？](##1)
-- [美团：数组去重排序: let arr = [1, 4, 6, [2, 1, 3, 0, [19, 1, 23, 6, 32, 10]]];](##1)
-- [美团：如何实现批量打印数字：比如有 0-100 个数字，第一秒打印 0-4，第二秒打印 5-9，依次类推，直至打印完所有数字。](##1)
-- [美团:将 name 相同的项目合并，他们的 menu 值相加（数据合并）](##1)
-- [美团：将 array1 转换成 array2](##1)
-- [盛派：面试题](##1)
-- [协创：面试题](##1)
-
 ## 问题：修改下面的定时器，输入 1-5?
 
 ```js
@@ -36,7 +24,7 @@ for (var i = 0; i < 6; i++) {
       console.log(val)
     },
     1000,
-    i
+    i,
   )
 }
 // 第三种，利用闭包
@@ -175,7 +163,7 @@ let arr = [
   { name: 'c', menu: 4 },
   { name: 'g', menu: 33 },
   { name: 'g', menu: 33 },
-  { name: 'c', menu: 44 }
+  { name: 'c', menu: 44 },
 ]
 
 // 转换后
@@ -183,7 +171,7 @@ let arr = [
 let arr = [
   { name: 'a', menu: 23 },
   { name: 'g', menu: 68 },
-  { name: 'c', menu: 48 }
+  { name: 'c', menu: 48 },
 ]
 ```
 
@@ -201,7 +189,7 @@ let all = keys.map(item => {
   }
   return {
     name: item,
-    menu: values
+    menu: values,
   }
 })
 console.log(all)
@@ -211,11 +199,11 @@ let all = Object.entries(
   arr.reduce((pred, item) => {
     pred[item.name] = pred[item.name] + item.menu || item.menu
     return pred
-  }, {})
+  }, {}),
 ).map(item => {
   return {
     name: item[0],
-    menu: item[1]
+    menu: item[1],
   }
 })
 console.log(all)
@@ -226,14 +214,14 @@ console.log(all)
 ```js
 let array1 = [
   [1, 2, 3, 4],
-  [5, 6, 7, 8]
+  [5, 6, 7, 8],
 ]
 
 let array2 = [
   [5, 1],
   [6, 2],
   [7, 3],
-  [8, 4]
+  [8, 4],
 ]
 ```
 
@@ -242,7 +230,7 @@ let array2 = [
 ```js
 let array1 = [
   [1, 2, 3, 4],
-  [5, 6, 7, 8]
+  [5, 6, 7, 8],
 ]
 
 let newArr = array1[0].map((item, index) => [array1[1][index], item])
@@ -257,14 +245,14 @@ let array1 = [
   [5, 6, 7, 8],
   [9, 10, 11, 12],
   [13, 14, 15, 16],
-  [17, 18, 19, 20]
+  [17, 18, 19, 20],
 ]
 
 let array2 = [
   [17, 13, 9, 5, 1],
   [18, 14, 10, 6, 2],
   [19, 15, 11, 7, 3],
-  [20, 16, 12, 8, 4]
+  [20, 16, 12, 8, 4],
 ]
 ```
 
@@ -314,7 +302,7 @@ Promise.reject('error')
     },
     () => {
       console.log('error1')
-    }
+    },
   )
   .then(
     () => {
@@ -322,7 +310,7 @@ Promise.reject('error')
     },
     () => {
       console.log('error2')
-    }
+    },
   )
 
 // 第三题 考察定时器
@@ -340,7 +328,7 @@ let obj = {
   n: 'obj name',
   sayN() {
     console.log(this.n)
-  }
+  },
 }
 let fn = obj.sayN
 fn()
@@ -351,7 +339,7 @@ let obj = {
   n: 'obj name',
   sayN() {
     console.log(this.n)
-  }
+  },
 }
 obj.sayN()
 
@@ -361,7 +349,7 @@ let obj = {
   n: 'obj name',
   sayN: () => {
     console.log(this.n)
-  }
+  },
 }
 obj.sayN()
 
@@ -464,3 +452,300 @@ function getPayCode(payType) {
   return payCode
 }
 ```
+
+## 美团：如何将下面的数组转换转换成树结构
+
+```js
+const arr = [
+  { id: 1, name: '节点 1', parentId: null },
+  { id: 2, name: '节点 1-1', parentId: 1 },
+  { id: 3, name: '节点 1-2', parentId: 1 },
+  { id: 4, name: '节点 1-1-1', parentId: 2 },
+  { id: 5, name: '节点 1-1-2', parentId: 2 },
+  { id: 6, name: '节点 1-2-1', parentId: 3 },
+  { id: 7, name: '节点 1-2-3', parentId: 3 },
+  { id: 8, name: '节点 1-1-1-1', parentId: 4 },
+  { id: 9, name: '节点 1-1-1-2', parentId: 4 },
+  { id: 10, name: '节点 1-1-2-1', parentId: 5 },
+  { id: 11, name: '节点 1-1-2-2', parentId: 5 },
+]
+```
+
+解答：
+
+```js
+// 第一种实现思路
+function arrtoTree(arr, parentId = null) {
+  return arr.reduce((pred, item) => {
+    if (item.parentId === parentId) {
+      const children = arrtoTree(arr, item.id)
+      if (children.length) {
+        item.children = children
+      }
+      pred.push(item)
+    }
+    return pred
+  }, [])
+}
+console.log(arrtoTree(arr))
+
+// 第二种实现思路
+let result = []
+let map = arr.reduce((pred, item) => {
+  pred[item.id] = item
+  return pred
+}, {})
+for (let item of arr) {
+  if (!item.parentId) {
+    result.push(item)
+  }
+  if (item.parentId in map) {
+    let parent = map[item.parentId]
+    parent.children = parent.children || []
+    parent.children.push(item)
+  }
+}
+console.log(result)
+```
+
+## 美团：当 a=？下面的等式成立
+
+```js
+if (a == 1 && a == 2 && a == 3) {
+  console.log('Hello Word')
+}
+```
+
+解答：
+
+## 实现一个 add 函数，让它满足一下条件
+
+```js
+add(1)(2)(3)() // ====>输出 6
+add(1, 2, 3)() // ====>输出 6
+add(1, 2)(3)(4, 5, 6)(7, 8)() //====>输出 36
+add(1, 2)(3, 4, 5, 6)() //====>输出 21
+```
+
+解答：
+
+```js
+function add(...args) {
+  let sum = 0
+  // 返回一个函数，这个函数可以继续接收参数并累加
+  function next(...nextArgs) {
+    sum += Array.isArray(nextArgs[0])
+      ? nextArgs.flat().reduce((a, b) => a + b, 0)
+      : nextArgs.reduce((a, b) => a + b, 0)
+    // 如果当前没有传入任何参数，返回累加的和
+    if (nextArgs.length === 0) {
+      return sum
+    }
+    // 否则返回一个新的函数，用于继续累加
+    return next
+  }
+  // 初始调用时，如果有参数，则先累加这些参数
+  if (args.length > 0) {
+    sum += Array.isArray(args[0])
+      ? args.flat().reduce((a, b) => a + b, 0)
+      : args.reduce((a, b) => a + b, 0)
+  }
+  // 返回用于继续累加的函数
+  return next
+}
+// 测试
+console.log(add(1)(2)(3)()) // 输出 6
+console.log(add(1, 2, 3)()) // 输出 6
+console.log(add(1, 2)(3)(4, 5, 6)(7, 8)()) // 输出 36
+console.log(add(1, 2)(3, 4, 5, 6)()) // 输出 21
+```
+
+## 假设前端有 n 个请求，想每次只请求 3 个，直到请求完成，如何写？
+
+## 如果有三个 promise，想串行执行如何写？
+
+## 头条：写一个 mySetInterVal(fn, a, b),每次间隔 a,a+b,a+2b 的时间，然后写一个 myClear，停止上面的 mySetInterVal
+
+```js
+function mySetInterVal(fn, a, b) {
+  this.a = a
+  this.b = b
+  this.time = 0
+  this.handle = -1
+  this.start = () => {
+    this.handle = setTimeout(
+      () => {
+        fn()
+        this.time++
+        this.start()
+        console.log(this.a + this.time * this.b)
+      },
+      this.a + this.time * this.b,
+    )
+  }
+
+  this.stop = () => {
+    clearTimeout(this.handle)
+    this.time = 0
+  }
+}
+
+var a = new mySetInterVal(
+  () => {
+    console.log('123')
+  },
+  1000,
+  200,
+)
+a.start()
+a.stop()
+```
+
+## 递归比较两个对象是否相等？
+
+```js
+let origin = {
+  a: 1,
+  c: {
+    d: [
+      1,
+      {
+        k: 22,
+      },
+    ],
+    f: {
+      age: 19,
+    },
+  },
+}
+let target = {
+  a: 1,
+  c: {
+    d: [
+      1,
+      {
+        k: 22,
+      },
+    ],
+    f: {
+      age: 19,
+    },
+  },
+}
+
+function deepEqual(origin, target) {
+  if (typeof target !== 'object' || typeof origin !== 'object') {
+    return origin === target
+  }
+
+  // 当前是对象的情况
+  if (Object.prototype.toString.call(target) === '[object Object]') {
+    if (Object.keys(target).length !== Object.keys(origin).length) {
+      return false
+    }
+    for (let key in target) {
+      if (!deepEqual(origin[key], target[key])) return false
+    }
+  }
+
+  // 当前是数组的情况
+  if (Object.prototype.toString.call(target) === '[object Array]') {
+    if (target.length !== origin.length) {
+      return false
+    }
+    for (let key of Object.keys(target)) {
+      if (!deepEqual(origin[key], target[key])) return false
+    }
+  }
+  return true
+}
+
+console.log(deepEqual(origin, target))
+```
+
+## 嵌套数组对象的递归合并？
+
+问题：将对应的省份合并在一起
+
+```js
+let data1 = [
+  {
+    key: '220000',
+    value: '吉林省',
+    data: [
+      {
+        key: '220100',
+        value: '长春市',
+        data: [
+          { key: '220102', value: '南关区' },
+          { key: '220103', value: '宽城区' },
+        ],
+      },
+    ],
+  },
+  {
+    key: '330000',
+    value: '浙江省',
+    data: [{ key: '330200', value: '宁波市' }],
+  },
+]
+
+let data2 = [
+  {
+    key: '220000',
+    value: '吉林省',
+    data: [
+      {
+        key: '220200',
+        value: '吉林市',
+        data: [{ key: '220202', value: '昌邑区' }],
+      },
+      {
+        key: '220100',
+        value: '长春市',
+        data: [
+          { key: '220102', value: '南关区' },
+          { key: '220104', value: '朝阳区' },
+        ],
+      },
+      { key: '220300', value: '四平市' },
+    ],
+  },
+  {
+    key: '330000',
+    value: '浙江省',
+    data: [{ key: '330100', value: '杭州市' }],
+  },
+]
+```
+
+## 输出下面函数的执行顺序？（考察函数的表达式和函数的声明式的区别？）{##1}
+
+```js
+var foo = function () {
+  console.log('foo1')
+}
+foo()
+
+var foo = function () {
+  console.log('foo2')
+}
+foo()
+
+function foo() {
+  console.log('foo1')
+}
+foo()
+
+function foo() {
+  console.log('foo2')
+}
+foo()
+```
+
+分析：
+
+1. 上面的代码可以分开来看，前两个 foo 函数是表达式，后面两个是函数的声明式，函数的表达式和函数的声明式的区别是，函数表达式提升的函数的赋值的变量 foo，而不是函数本身，函数声明提升的是函数自身。
+2. 所以前面两个函数的表达式的执行实际是依次从上向下执行，执行的结果是 foo1 和 foo2。
+3. 后面两个是函数的声明，存在函数的提升，同时由于函数作用域的特性，声明两个相同的函数，后面一个函数会覆盖前面一个函数，这样在执行 foo()的时候第四个 foo 函数会覆盖第三个 foo 函数，所以输出的是 foo2 和 foo2。
+4. 综上的结果是 foo1 foo2 foo2 foo2 。
