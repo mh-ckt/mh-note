@@ -13,6 +13,10 @@ export default defineConfig({
       {
         text: 'css文档',
         items: [
+          { text: '入门', link: '/views/css/basics' },
+          { text: '进阶', link: '/views/css/advance' },
+          { text: '元素', link: '/views/css/element' },
+          { text: '布局', link: '/views/css/layout' },
           { text: 'css属性计算', link: '/views/css/attribute-calculation' },
           { text: '包含块', link: '/views/css/containing-block' },
         ],

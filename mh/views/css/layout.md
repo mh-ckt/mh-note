@@ -1,10 +1,34 @@
-- [如何实现两栏布局？](##1)
-- [响应式布局的实现方案有哪些？](##2)
-- [如何实现圣杯布局？](##3)
-- [display 有哪些属性？弹性布局和网格布局有哪些区别？](##4)
-- [display:none 和 visibility:hidden 两者的区别？](##5)
-- [如何实现等分响应式布局？](##6)
-- [解释下 flex:1 是什么？flex:0 是什么？flex:auto 又是什么？](##7)
+## 如何实现水平垂直居中布局？
+
+1. flex 布局： 父元素设置 display:flex; justify-content:center; align-items:center; (适用于多行或者单行，元素可以是任意类型)
+2. grid 布局： 父元素设置 display:grid; place-items:center; 或者 display:grid; justify-items:center; align-items:center;
+3. 绝对定位 + transform: 父元素相对定位 position:relative; 子元素 position:absolute; left:50%; top:50%; transform: translate(-50%,-50%);
+4. 绝对定位 + margin:auto: 父元素相对定位 position:relative; 子元素 position:absolute; left:0; right:0; top:0; bottom:0; margin:auto;
+5. 单行文本或者行里元素行内块元素居中: text-align:center; height:x; line-height:x; 高度和行高相等。
+
+## 实现响应式布局的方式有哪些？
+
+1. 媒体查询@media：特点是基于不同的断点定义不同的样式。
+
+```css
+/* 默认样式（pc优先） */
+.container {
+  width: 100%;
+}
+/* 平板及以下 */
+@media (max-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+```
+
+2. flex 布局：一维布局。
+3. grid 布局：二维布局。
+4. 使用视口单位进行布局：比如 rem、em、vw、wh。
+5. 百分比布局：依赖父元素的宽度进行变化。
+
+总结：开发过程中常常采用多种布局方式的融合，比如网站可以采用媒体查询 + vw + 百分比布局
 
 ## 如何实现两栏布局？
 
@@ -119,3 +143,32 @@ flex-shrink 定义项目缩小比例，默认值是 1，即不存在剩余空间
 flex-basis 定义剩余空间的分配，默认值是 auto，即项目原来的大小。
 
 记忆技巧：先记忆 flex 的默认值，然后如果是数字的话设置的都是 flex-grow 的，同时 flex-basis 都是百分之 0，如果是 auto，设置的 flex-basis，同时 flex-grow：1。
+
+## 如何让图片始终自适应铺满全屏？
+
+1. 背景图片 + background-size: cover;
+
+```css
+body {
+  margin: 0;
+  height: 100vh;
+  background-size: cover; /* 等比例缩放图片覆盖容器，图片不会变形 */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('');
+}
+```
+
+2. img 标签 + object-fit:cover;
+
+```css
+img {
+  position: fixed; /* 相对浏览器的视口进行定位 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* 置于内容下方 */
+}
+```
