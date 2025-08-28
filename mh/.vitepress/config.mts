@@ -13,6 +13,12 @@ export default defineConfig({
 
     sidebar: [
       {
+        text: 'vue文档',
+        items: [
+          { text: 'vue3内置组件', link: '/views/vue/v3-built-in-components' },
+        ],
+      },
+      {
         text: 'css文档',
         items: [
           { text: '入门', link: '/views/css/basics' },
