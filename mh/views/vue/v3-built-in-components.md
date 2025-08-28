@@ -17,7 +17,7 @@
 
 **modal代码展示：**
 
-```vue [不使用Teleport 的 myModel.vue组件]
+```vue [myModel.vue组件]
 <script setup>
   import { ref } from 'vue'
   const open = ref(false)
@@ -112,3 +112,19 @@
       </div>
 </body>
 ```
+
+### Teleport核心问题：
+
+> [!TIP]
+> **被Teleport传递到body下面的`<model/>`组件为什么没有样式和逻辑没有受到影响？**
+>
+> ---
+>
+> `<Teleport>`的作用是：将某部分 Vue 组件渲染出的 DOM（比如一个 Modal 的 div）渲染到 DOM 树中的其他位置（如 `<body>`），但该 DOM 对应的 Vue 组件逻辑（JS）、样式（CSS）、状态、事件等，仍然由原来的 Vue 组件实例管理，并未移动。​
+
+> [!TIP]
+> **Teleport的作用时机？**
+>
+> ---
+>
+> 在整个vue的渲染过程中，Teleport是在虚拟DOM生成之后，将VNode转换成真实DOM之前产生作用的。在虚拟DOM转化成真实DOM的过程中，识别出`<Teleport>`组件,并将其中的子 VNode “传送”（渲染）到指定的目标 DOM 节点（如 `<body>`）下。
