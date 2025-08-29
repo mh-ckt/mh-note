@@ -13,23 +13,6 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'vue文档',
-        items: [
-          { text: 'vue3内置组件', link: '/views/vue/v3-built-in-components' },
-        ],
-      },
-      {
-        text: 'css文档',
-        items: [
-          { text: '入门', link: '/views/css/basics' },
-          { text: '进阶', link: '/views/css/advance' },
-          { text: '元素', link: '/views/css/element' },
-          { text: '布局', link: '/views/css/layout' },
-          { text: 'css属性计算', link: '/views/css/attribute-calculation' },
-          { text: '包含块', link: '/views/css/containing-block' },
-        ],
-      },
-      {
         text: 'javascript文档',
         items: [
           { text: 'js入门', link: '/views/javascript/basics' },
@@ -53,6 +36,23 @@ export default defineConfig({
           { text: '事件循环', link: '/views/javascript/event-loop' },
           { text: 'route相关', link: '/views/javascript/router' },
           { text: '笔试', link: '/views/javascript/written-examination' }
+        ],
+      },
+      {
+        text: 'vue文档',
+        items: [
+          { text: 'vue3内置组件', link: '/views/vue/v3-built-in-components' },
+        ],
+      },
+      {
+        text: 'css文档',
+        items: [
+          { text: '入门', link: '/views/css/basics' },
+          { text: '进阶', link: '/views/css/advance' },
+          { text: '元素', link: '/views/css/element' },
+          { text: '布局', link: '/views/css/layout' },
+          { text: 'css属性计算', link: '/views/css/attribute-calculation' },
+          { text: '包含块', link: '/views/css/containing-block' },
         ],
       },
       {
