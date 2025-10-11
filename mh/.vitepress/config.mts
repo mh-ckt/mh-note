@@ -15,6 +15,7 @@ export default defineConfig({
       {
         text: 'javascript文档',
         items: [
+          { text: 'canvas', link: '/views/javascript/canvas' },
           { text: 'js入门', link: '/views/javascript/basics' },
           { text: 'js进阶', link: '/views/javascript/advance' },
           { text: 'this', link: '/views/javascript/this' },
@@ -47,6 +48,7 @@ export default defineConfig({
       {
         text: 'css文档',
         items: [
+          { text: 'css技巧', link: '/views/css/techniques' },
           { text: '入门', link: '/views/css/basics' },
           { text: '进阶', link: '/views/css/advance' },
           { text: '元素', link: '/views/css/element' },
