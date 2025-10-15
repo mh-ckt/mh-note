@@ -48,8 +48,9 @@ export default defineConfig({
       {
         text: 'css文档',
         items: [
-          { text: 'css技巧', link: '/views/css/techniques' },
-          { text: '入门', link: '/views/css/basics' },
+          { text: '快速入门', link: '/views/css/style-basics' },
+          { text: '使用技巧', link: '/views/css/style-techniques' },
+          { text: '问题归纳', link: '/views/css/style-issue' },
           { text: '进阶', link: '/views/css/advance' },
           { text: '元素', link: '/views/css/element' },
           { text: '布局', link: '/views/css/layout' },
