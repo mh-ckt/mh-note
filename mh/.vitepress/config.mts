@@ -23,7 +23,6 @@ export default defineConfig({
           { text: '方法实现', link: '/views/javascript/method-realize' },
           { text: 'object', link: '/views/javascript/object' },
           { text: '数据处理', link: '/views/javascript/data-correlation' },
-          { text: '类', link: '/views/javascript/es6-class' },
           { text: '性能优化', link: '/views/javascript/performance-optimization' },
           { text: '本地存储', link: '/views/javascript/bowser-local-storage' },
           { text: '浏览器渲染原理', link: '/views/javascript/bowser-rendering' },
