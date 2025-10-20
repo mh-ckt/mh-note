@@ -13,18 +13,16 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'javascript文档',
+        text: 'JS文档',
         items: [
-          { text: 'canvas', link: '/views/javascript/canvas' },
+          { text: 'ES6探索之旅', link: '/views/javascript/ES6-trip' },
           { text: 'js入门', link: '/views/javascript/basics' },
           { text: 'js进阶', link: '/views/javascript/advance' },
+          { text: 'canvas', link: '/views/javascript/canvas' },
           { text: 'this', link: '/views/javascript/this' },
           { text: '方法实现', link: '/views/javascript/method-realize' },
           { text: 'object', link: '/views/javascript/object' },
           { text: '数据处理', link: '/views/javascript/data-correlation' },
-          { text: 'promise', link: '/views/javascript/es6-promise' },
-          { text: 'ES6入门', link: '/views/javascript/es6-basics' },
-          { text: 'ES6进阶', link: '/views/javascript/es6-advance' },
           { text: '类', link: '/views/javascript/es6-class' },
           { text: '性能优化', link: '/views/javascript/performance-optimization' },
           { text: '本地存储', link: '/views/javascript/bowser-local-storage' },

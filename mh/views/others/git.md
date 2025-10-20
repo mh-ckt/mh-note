@@ -204,3 +204,5 @@ git reset --hard HEAD^ ===> 删除改动的代码，撤销 commit，同时撤销
 - 取消与之前远程仓库的连接 `git remote remove origin`
 - 初始化仓库 `git init`
 - 连接新仓库 `git remote add origin https://github.com/XXX.git`
+
+#### 7. git 合并冲突你喜欢用 merge 还是 rebase？
