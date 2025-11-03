@@ -24,14 +24,12 @@ export default defineConfig({
           { text: 'object', link: '/views/javascript/object' },
           { text: '数据处理', link: '/views/javascript/data-correlation' },
           { text: '性能优化', link: '/views/javascript/performance-optimization' },
-          { text: '笔试', link: '/views/javascript/written-examination' }
+          { text: '笔试', link: '/views/javascript/written-examination' },
         ],
       },
       {
         text: 'vue文档',
-        items: [
-          { text: 'vue3内置组件', link: '/views/vue/v3-built-in-components' },
-        ],
+        items: [{ text: 'vue3内置组件', link: '/views/vue/v3-built-in-components' }],
       },
       {
         text: 'css文档',
@@ -59,6 +57,7 @@ export default defineConfig({
       {
         text: '其他',
         items: [
+          { text: 'webapack', link: '/views/others/webpack' },
           { text: '代码提交校验及提交规范', link: '/views/others/code-submission' },
           { text: 'react中全局配置less', link: '/views/others/configure-less' },
           { text: 'git相关', link: '/views/others/git' },
