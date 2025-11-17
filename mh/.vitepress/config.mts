@@ -62,6 +62,7 @@ export default defineConfig({
           { text: '代码提交校验及提交规范', link: '/views/others/code-submission' },
           { text: 'react中全局配置less', link: '/views/others/configure-less' },
           { text: 'git相关', link: '/views/others/git' },
+          { text: '微前端', link: '/views/others/micro-frontend' },
         ],
       },
       {
