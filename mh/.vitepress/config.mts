@@ -16,6 +16,7 @@ export default defineConfig({
         text: 'JS文档',
         items: [
           { text: 'ES6探索之旅', link: '/views/javascript/ES6-trip' },
+          { text: '代码优化', link: '/views/javascript/optimize' },
           { text: 'browser', link: '/views/javascript/browser' },
           { text: 'canvas', link: '/views/javascript/canvas' },
           { text: 'js入门', link: '/views/javascript/basics' },
